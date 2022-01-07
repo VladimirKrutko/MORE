@@ -1,6 +1,6 @@
 import psycopg2
 
-class Insert_data:
+class More_DB_commnad:
     
     def __init__(self, db_name, username, password, host='localhost'):
         conect = psycopg2.connect(dbname=db_name, user=username, 
@@ -30,4 +30,12 @@ class Insert_data:
             self.connect.autocommit = True
             query = f'SELECT  more_table.insert_deliver_warehouse(\'{prod_name}\'::text,\'{c_name}\'::text, \'{sup_name}\'::text, {u_price}::float, {quant}::float);'
             cursor.execute(query)
+
+    def select_country(self):
+        with self.conect.cursor() as cursor:
+            cursor.execute('SELECT * FROM more_table.country;')
+            country = cursor.fetchall()
+        return country 
+        
+
     

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MORE</title>
-    <link rel="stylesheet" href="style/meny.css">
+    <link href="{{ url_for('static', path='/css/meny.css') }}" rel="stylesheet">
 </head>
 <body>
     <header class="header_menu">
@@ -36,6 +36,10 @@
             </ul>
     </header>
 
-
+    <main>
+        <p class="description">
+            Project description
+        </p>
+    </main>
 </body>
 </html>
