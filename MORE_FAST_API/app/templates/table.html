@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MORE</title>
-    <!-- <link href="{{ url_for('static', path='/css/meny.css') }}" rel="stylesheet"> -->
-    <link href="/home/uladzimir/MORE/MORE_FAST_API/static/css/meny.css" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/meny.css') }}" rel="stylesheet">
+    <!-- <link href="/home/uladzimir/MORE/MORE_FAST_API/static/css/meny.css" rel="stylesheet"> -->
 </head>
 <body>
     <header class="header_menu">
@@ -38,15 +38,31 @@
     </header>
 
     <main>
-        <table class="country">   
+       
+        <table border="1" class="country">   
             <thead>
                 <tr>
                     <th> id </th>
                     <th> country name</th>
                 </tr>
+                {% for row in country %}
+                <tr>
+                    <th>{{row.id}}</th>
+                    <th>{{row.country}}</th> 
+                </tr>                   
+                {% endfor %}
             </thead>
             <tbody>
-                
+                <tr>
+                    <tb>1</tb>
+                    <tb>Poland</tb>
+                </tr>
+                    <!-- {% for row in country %}
+                    <tr>
+                        <tb>{{row.id}}</tb>
+                        <-- <tb>{{row.country}}</tb>  -->
+                    <!-- </tr>                    -->
+                    <!-- {% endfor %} --> 
             </tbody>
         </table>
     </main>
