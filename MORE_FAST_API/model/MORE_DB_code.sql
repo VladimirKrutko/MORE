@@ -1,7 +1,7 @@
 -- CREATE DATABASE more;
 --
 -- CREATE SCHEMA IF NOT EXISTS more_table;
--- SET SEARCH_PATH TO more_table, public;
+SET SEARCH_PATH TO more_table;
 
 CREATE TABLE IF NOT EXISTS "country" (
   "idcountry" serial PRIMARY KEY,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS "warehouse" (
   "idstatemant" serial PRIMARY KEY,
   "idproduct" int,
   "quantity" float,
-  "date" timestamp
+  "date" timestamp NOT NULL DEFAULT current_timestamp
 );
 
 CREATE TABLE IF NOT EXISTS "sale_price" (
@@ -70,42 +70,38 @@ CREATE OR REPLACE FUNCTION insert_deliver_warehouse (prod_name text,c_name text,
 RETURNS void
 LANGUAGE plpgsql AS $$
     DECLARE
-        id_prod int := (SELECT idproduct FROM product WHERE name=prod_name);
+        id_prod int := (SELECT idproduct FROM  more_table.product WHERE name=prod_name);
 
     BEGIN
-        INSERT INTO delivery (idproduct, idcountry, idsumplier, unit_price, quantity)
+        INSERT INTO more_table.delivery (idproduct, idcountry, idsumplier, unit_price, quantity)
         VALUES (
                  id_prod,
-                 (SELECT idcountry FROM country WHERE name=c_name),
-                 (SELECT idsaplier FROM saplier WHERE name=sup_name),
+                 (SELECT idcountry FROM  more_table.country WHERE name=c_name),
+                 (SELECT idsaplier FROM  more_table.saplier WHERE name=sup_name),
                  u_price,
                  quant
                 );
 
-        IF id_prod IN (SELECT idproduct FROM warehouse)
+        IF id_prod IN (SELECT idproduct FROM  more_table.warehouse)
         THEN
-            UPDATE warehouse
+            UPDATE more_table.warehouse
             SET quantity = quantity+quant
             WHERE idproduct=id_prod;
         ELSE
-            INSERT INTO warehouse (idproduct, quantity)
+            INSERT INTO  more_table.warehouse (idproduct, quantity)
             VALUES (
-                    (SELECT idproduct FROM product WHERE name=prod_name),
+                    (SELECT idproduct FROM  more_table.product WHERE name=prod_name),
                     quant
                    );
         END IF;
         END;
     $$;
 
+SELECT more_table.insert_deliver_warehouse('Леденцы Орбит лимон и мята 35г (4.49 100 г)'::text, 'Россия', 'АЛИДИ-Вест ИООО',123,100 );
+
 CREATE OR REPLACE FUNCTION sale_transaction ( prod_name text, qunt int)
 RETURNS void
 LANGUAGE sql AS $$
-
-
-    SELECT idproduct
-    FROM product
-    WHERE name = prod_name;
-
     INSERT INTO sale (idsale_price, quantity)
     VALUES (
             (SELECT idsale_price FROM sale_price WHERE idproduct=(SELECT idproduct
@@ -119,9 +115,15 @@ LANGUAGE sql AS $$
     WHERE idproduct=(SELECT idproduct
                     FROM product
                     WHERE name = prod_name);
-
-    TRUNCATE  id_prod;
     $$;
+
+SELECT * FROM information_schema.tables;
+
+INSERT INTO product (name, unit)
+VALUES ('2', '1');
+
+TRUNCATE product CASCADE ;
+
 
 
 
