@@ -38,10 +38,17 @@ async def select_delivery(request:Request):
     delivery = data_db.select_delivery()
     return templates.TemplateResponse("delivery.html", {"request": request, "delivery":delivery})
 
+@app.get("/warehouse")
+async def select_warehouse(request:Request):
+    warehouse=data_db.select_warehouse()
+    print(warehouse)
+    return templates.TemplateResponse("warehouse.html", {"request": request, "warehouse":warehouse})
+
 @app.get("/")
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request}
     )
+
 if __name__ == "__main__":
     uvicorn.run('main:app',reload=True)
     
