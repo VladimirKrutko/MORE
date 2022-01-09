@@ -53,16 +53,17 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>Saplier</th>
-                    <th>email</th>
-                    <th>tel</th>
+                    <th>Product</th>
+                    <th>Country</th>
+                    <th>Sapplier</th>
+                    <th>Unit_price</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     {% for row in delivery %}
                     <tr>
-                        <!-- 'id', 'product', 'country', 'sapplier','unit_price', 'quantity', 'date' -->
                         <td>{{row.id}}</td>
                         <td>{{row.product}}</td> 
                         <td>{{row.country}}</td> 
