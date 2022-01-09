@@ -60,17 +60,16 @@
             </thead>
             <tbody>
                 <tr>
-                    {% for row in suplier %}
-                    <!-- <p>
-                        {{row.name}}
-                        {{row.email}}
-                        {{row.tel}}
-                    </p> -->
+                    {% for row in delivery %}
                     <tr>
+                        <!-- 'id', 'product', 'country', 'sapplier','unit_price', 'quantity', 'date' -->
                         <td>{{row.id}}</td>
-                        <td>{{row.name}}</td> 
-                        <td>{{row.email}}</td> 
-                        <td>{{row.tel}}</td> 
+                        <td>{{row.product}}</td> 
+                        <td>{{row.country}}</td> 
+                        <td>{{row.sapplier}}</td> 
+                        <td>{{row.unit_price}}</td> 
+                        <td>{{row.quantity}}</td> 
+                        <td>{{row.date}}</td> 
                     </tr>                   
                     {% endfor %}
                    </tr>
