@@ -36,9 +36,7 @@ async def select_suplier(request:Request):
 @app.get("/delivery")
 async def select_delivery(request:Request):
     delivery = data_db.select_delivery()
-    return templates.TemplateResponse("saplier.html", {"request": request, "suplier":sup})
-
-
+    return templates.TemplateResponse("delivery.html", {"request": request, "delivery":delivery})
 
 @app.get("/")
 async def root(request: Request):

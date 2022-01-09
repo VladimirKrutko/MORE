@@ -44,6 +44,7 @@
             <ul class="widget-list">
               <li><a href="/sapliers">Sapliers</a></li>
               <li><a href="/delivery">Delivery</a></li>
+              <li><a href="">Warehouse</a></li>
               <li><a href="">Sales</a></li>
               <!-- <li><a href=""></a></li>
               <li><a href="">Видео</a></li> -->
@@ -52,11 +53,11 @@
         <table border=12 class="table" >
             <thead>
                 <tr>
-                    <th>id</th>
                     <th>Product</th>
                     <th>Country</th>
                     <th>Sapplier</th>
                     <th>Unit_price</th>
+                    <th>Quantity</th>
                     <th>Date</th>
                 </tr>
             </thead>
@@ -64,7 +65,6 @@
                 <tr>
                     {% for row in delivery %}
                     <tr>
-                        <td>{{row.id}}</td>
                         <td>{{row.product}}</td> 
                         <td>{{row.country}}</td> 
                         <td>{{row.sapplier}}</td> 

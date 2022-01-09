@@ -50,7 +50,16 @@ class More_DB_commnad:
             'JOIN more_table.product p ON p.idproduct = d.idproduct '+
             'JOIN more_table.country c  ON d.idcountry = c.idcountry '+
             'JOIN more_table.saplier s ON s.idsaplier = d.idsumplier;')
-            delivery = [{ name:obj for name,  obj in  zip(['id', 'product', 'country', 'sapplier','unit_price', 'quantity', 'date'] ,row)} for row in cursor.fetchall()]
+            delivery = [{ name:obj for name,  obj in  zip(['product', 'country', 'sapplier','unit_price', 'quantity', 'date'] ,row)} for row in cursor.fetchall()]
         return delivery
+    
+    def select_warehouse(self):
+        with self.connect.cursor() as cursor:
+            cursor.execute('SELECT w.idstatemant, p.name product, w.quantity, w.date last_update '+
+                        'FROM more_table.warehouse w '+
+                        'JOIN product p ON p.idproduct = w.idproduct;')
+            status = [{name: obj for name, obj in zip(['idstatemant','product', 'quantity','last_update'] ,row)}
+                    for row in cursor.fetchall()]
+        return status
 
     
