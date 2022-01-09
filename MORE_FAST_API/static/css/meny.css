@@ -1,20 +1,20 @@
-ul {
+ .header_menu ul {
     list-style: none; /*убираем маркеры списка*/
     margin: 0; /*убираем отступы*/
     padding-left: 0; /*убираем отступы*/
     margin-top:25px; /*делаем отступ сверху*/
-    background:#9b44ff; /*добавляем фон всему меню (заменив этот параметр, вы поменяете цвет всего меню)*/
+    background:#6246EA; /*добавляем фон всему меню (заменив этот параметр, вы поменяете цвет всего меню)*/
     height: 50px; /*задаем высоту*/
   }
   a {
     text-decoration: none; /*убираем подчеркивание текста ссылок*/
-    background:#9b44ff; /*добавляем фон к пункту меню (заменив этот параметр, вы поменяете цвет всех пунктов меню)*/
+    background:#6246EA; /*добавляем фон к пункту меню (заменив этот параметр, вы поменяете цвет всех пунктов меню)*/
     color:#fff; /*меняем цвет ссылок*/
     padding:0px 15px; /*добавляем отступ*/
     font-family: arial; /*меняем шрифт*/
     line-height:50px; /*ровняем меню по вертикали*/
     display: block; 
-    border-right: 1px solid #9b44ff; /*добавляем бордюр справа*/
+    border-right: 1px solid #6246EA; /*добавляем бордюр справа*/
     -moz-transition: all 0.3s 0.01s ease; /*делаем плавный переход*/
     -o-transition: all 0.3s 0.01s ease;
     -webkit-transition: all 0.3s 0.01s ease;
@@ -25,3 +25,39 @@ ul {
   li { 
     display: inline-flex;
     float: center; }
+
+    .table {
+      width: 70%;
+      border: none;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+    .table thead th {
+      font-weight: bold;
+      text-align: left;
+      border: none;
+      padding: 5px 10px;
+      background: #2f8dcc;
+      font-size: 14px;
+      border-left: 1px solid #2f8dcc;
+      border-right: 1px solid #2f8dcc;
+    }
+    .table tbody td {
+      text-align: left;
+      border-left: 1px solid #2f8dcc;
+      border-right: 1px solid #2f8dcc;
+      padding: 10px 15px;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    .table thead tr th:first-child, .table tbody tr td:first-child {
+      border-left: 20px;
+    }
+    .table thead tr th:last-child, .table tbody tr td:last-child {
+      border-right: none;
+    }
+    .table tbody tr:nth-child(even){
+      background: #f3f3f3;
+    }
+     
+    
