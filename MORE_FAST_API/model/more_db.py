@@ -38,11 +38,19 @@ class More_DB_commnad:
     
     def select_suplier(self):
         with self.connect.cursor() as cursor:
-            cursor.excute('SELECT * FROM more_table.saplier;')
-            sapplier = [{'id': row[0], 'name':row[1], 'email':row[3], 'tel':row[4]}  
-            for row in cursor.fetchall()]
+            cursor.execute('SELECT * FROM more_table.saplier;')
+            sapplier = [{'id': row[0], 'name':row[1], 'email':row[2], 'tel':row[3]}  
+                        for row in cursor.fetchall()]
         return sapplier
-
-        
+    
+    def select_delivery(self):
+        with self.connect.cursor() as cursor:
+            cursor.execute('SELECT p.name product, c.name country, s.name sapplier,d.unit_price, d.quantity,d.date date '+
+            'FROM more_table.delivery d '+
+            'JOIN more_table.product p ON p.idproduct = d.idproduct '+
+            'JOIN more_table.country c  ON d.idcountry = c.idcountry '+
+            'JOIN more_table.saplier s ON s.idsaplier = d.idsumplier;')
+            delivery = [{ name:obj for name,  obj in  zip(['id', 'product', 'country', 'sapplier','unit_price', 'quantity', 'date'] ,row)} for row in cursor.fetchall()]
+        return delivery
 
     

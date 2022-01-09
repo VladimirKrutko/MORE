@@ -45,21 +45,32 @@
               <li><a href="/sapliers">Sapliers</a></li>
               <li><a href="/delivery">Delivery</a></li>
               <li><a href="">Sales</a></li>
+              <!-- <li><a href=""></a></li>
+              <li><a href="">Видео</a></li> -->
             </ul>
           </div>
         <table border=12 class="table" >
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>County</th>
+                    <th>Saplier</th>
+                    <th>email</th>
+                    <th>tel</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    {% for row in country %}
+                    {% for row in suplier %}
+                    <!-- <p>
+                        {{row.name}}
+                        {{row.email}}
+                        {{row.tel}}
+                    </p> -->
                     <tr>
                         <td>{{row.id}}</td>
-                        <td>{{row.country}}</td> 
+                        <td>{{row.name}}</td> 
+                        <td>{{row.email}}</td> 
+                        <td>{{row.tel}}</td> 
                     </tr>                   
                     {% endfor %}
                    </tr>
