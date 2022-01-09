@@ -6,7 +6,7 @@
     background:#6246EA; /*добавляем фон всему меню (заменив этот параметр, вы поменяете цвет всего меню)*/
     height: 50px; /*задаем высоту*/
   }
-  a {
+ .header_menu ul li a {
     text-decoration: none; /*убираем подчеркивание текста ссылок*/
     background:#6246EA; /*добавляем фон к пункту меню (заменив этот параметр, вы поменяете цвет всех пунктов меню)*/
     color:#fff; /*меняем цвет ссылок*/
@@ -19,45 +19,76 @@
     -o-transition: all 0.3s 0.01s ease;
     -webkit-transition: all 0.3s 0.01s ease;
   }  
-  a:hover {
+  .header_menu ul li a:hover {
     background:#9b44ff;/*добавляем эффект при наведении*/
   }
-  li { 
+  .header_menu ul li { 
     display: inline-flex;
     float: center; }
 
-    .table {
-      width: 70%;
-      border: none;
-      margin: auto;
-      margin-bottom: 20px;
-    }
-    .table thead th {
-      font-weight: bold;
-      text-align: left;
-      border: none;
-      padding: 5px 10px;
-      background: #2f8dcc;
-      font-size: 14px;
-      border-left: 1px solid #2f8dcc;
-      border-right: 1px solid #2f8dcc;
-    }
-    .table tbody td {
-      text-align: left;
-      border-left: 1px solid #2f8dcc;
-      border-right: 1px solid #2f8dcc;
-      padding: 10px 15px;
-      font-size: 14px;
-      vertical-align: top;
-    }
-    .table thead tr th:first-child, .table tbody tr td:first-child {
-      border-left: 20px;
-    }
-    .table thead tr th:last-child, .table tbody tr td:last-child {
-      border-right: none;
-    }
-    .table tbody tr:nth-child(even){
-      background: #f3f3f3;
-    }
+.table{
+	border: 1px solid #eee;
+	table-layout: fixed;
+	width: 100%;
+	margin-bottom: 20px;
+}
+.table th {
+	font-weight: bold;
+	padding: 5px;
+	background: #efefef;
+	border: 1px solid #dddddd;
+}
+.table td{
+	padding: 5px 10px;
+	border: 1px solid #eee;
+	text-align: left;
+}
+.table tbody tr:nth-child(odd){
+	background: #fff;
+}
+.table tbody tr:nth-child(even){
+	background: #F7F7F7;
+}
+
+
+    * {box-sizing: border-box; margin: 0;}
+.widget {
+  display: flex;
+  padding: 20px 30px;
+  background: #52b6f0; 
+  font-family: 'Roboto', sans-serif;
+}
+.widget-title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #222;
+  font-size: 16px;
+  padding-left: 15px;
+  margin-bottom: 15px;
+  background:#6246EA; 
+  border-left: 2px solid #b99d61;
+}
+.widget-list {
+  padding: 0;
+  
+  list-style: none;
+}
+/* .widget-list a:before {
+  content: "\2014";
+  
+  margin-right: 14px;
+} */
+.widget-list a {
+  
+  text-decoration: none;
+  outline: none;
+  display: block;
+  padding: 6px 0; 
+  letter-spacing: 1px;
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+  transition: .3s linear;
+}
+.widget-list a:hover {color: #26e0f8;}
      
     

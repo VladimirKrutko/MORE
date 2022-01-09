@@ -35,22 +35,37 @@
                 </a>
             </li>
             </ul>
-    </header>
 
-    <main>
-        <table border=1 class="country_table" >
-           <tr>
-               <th>id</th>
-               <th>County</th>
-           </tr>
-           <tr>
-            {% for row in country %}
-            <tr>
-                <td>{{row.id}}</td>
-                <td>{{row.country}}</td> 
-            </tr>                   
-            {% endfor %}
-           </tr>
+    </header>
+    
+
+    <main style="display: flex">
+        <div class="widget">
+            <ul class="widget-list">
+              <li><a href="">Sapliers</a></li>
+              <li><a href="">Delivery</a></li>
+              <li><a href="">Sales</a></li>
+              <!-- <li><a href=""></a></li>
+              <li><a href="">Видео</a></li> -->
+            </ul>
+          </div>
+        <table border=12 class="table" >
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>County</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for row in country %}
+                    <tr>
+                        <td>{{row.id}}</td>
+                        <td>{{row.country}}</td> 
+                    </tr>                   
+                    {% endfor %}
+                   </tr>
+            </tbody>
         </table>
     </main>
 </body>
