@@ -38,33 +38,22 @@
     </header>
 
     <main>
-       
-        <table border="1" class="country">   
-            <thead>
-                <tr>
-                    <th> id </th>
-                    <th> country name</th>
-                </tr>
-                {% for row in country %}
-                <tr>
-                    <th>{{row.id}}</th>
-                    <th>{{row.country}}</th> 
-                </tr>                   
-                {% endfor %}
-            </thead>
-            <tbody>
-                <tr>
-                    <tb>1</tb>
-                    <tb>Poland</tb>
-                </tr>
-                    <!-- {% for row in country %}
-                    <tr>
-                        <tb>{{row.id}}</tb>
-                        <-- <tb>{{row.country}}</tb>  -->
-                    <!-- </tr>                    -->
-                    <!-- {% endfor %} --> 
-            </tbody>
+        <table border=1 class="country_table" >
+           <tr>
+               <th>id</th>
+               <th>County</th>
+           </tr>
+           <tr>
+            {% for row in country %}
+            <tr>
+                <td>{{row.id}}</td>
+                <td>{{row.country}}</td> 
+            </tr>                   
+            {% endfor %}
+           </tr>
         </table>
     </main>
 </body>
 </html>
+
+

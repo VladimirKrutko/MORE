@@ -3,9 +3,8 @@ import psycopg2
 class More_DB_commnad:
     
     def __init__(self, db_name, username, password, host='localhost'):
-        conect = psycopg2.connect(dbname=db_name, user=username, 
+        self.connect = psycopg2.connect(dbname=db_name, user=username, 
                         password=password, host=host)
-
 
     def insert_product(self, prod_name, unit):
         with self.connect.cursor() as cursor:
@@ -20,7 +19,7 @@ class More_DB_commnad:
             cursor.execute(query)
 
     def insert_sapplier(self, sap_name, email, tel):
-        with self.conect.cursor() as cursor:
+        with self.connect.cursor() as cursor:
             self.connect.autocommit = True
             query = f'INSERT INTO more_table.saplier (name, email, tel) VALUES (\'{sap_name}\', \'{email}\',\'{tel}\');'
             cursor.execute(query)
@@ -32,9 +31,9 @@ class More_DB_commnad:
             cursor.execute(query)
 
     def select_country(self):
-        with self.conect.cursor() as cursor:
+        with self.connect.cursor() as cursor:
             cursor.execute('SELECT * FROM more_table.country;')
-            country = cursor.fetchall()
+            country = [{'id':row[0], 'country':row[1]} for row in cursor.fetchall()]
         return country 
         
 
