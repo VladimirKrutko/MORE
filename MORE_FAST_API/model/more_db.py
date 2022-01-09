@@ -35,6 +35,14 @@ class More_DB_commnad:
             cursor.execute('SELECT * FROM more_table.country;')
             country = [{'id':row[0], 'country':row[1]} for row in cursor.fetchall()]
         return country 
+    
+    def select_suplier(self):
+        with self.connect.cursor() as cursor:
+            cursor.excute('SELECT * FROM more_table.saplier;')
+            sapplier = [{'id': row[0], 'name':row[1], 'email':row[3], 'tel':row[4]}  
+            for row in cursor.fetchall()]
+        return sapplier
+
         
 
     
