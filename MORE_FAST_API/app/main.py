@@ -2,9 +2,6 @@ from fastapi import FastAPI
 from fastapi import Form
 from starlette.requests import Request
 import uvicorn
-from pydantic import BaseModel
-# from fastapi.responses import HTMLResponse
-# from starlette.responses import FileResponse 
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
