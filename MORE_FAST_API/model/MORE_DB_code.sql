@@ -122,7 +122,7 @@ LANGUAGE plpgsql AS $$
                     WHERE name = prod_name);
     END;
     $$;
-
+ROLLBACK;
 SELECT more_table.sales_('Батончик Марс 50г (24.4 кг)'::text, 2);
 
 INSERT INTO more_table.sale (idsale_price, quantity)
@@ -138,4 +138,9 @@ WHERE idproduct=21;
 
 SELECT idsale_price FROM more_table.sale_price WHERE idproduct=2;
 
-SELECT current_timestamp - '1 month'::interval
+SELECT current_timestamp - '1 month'::interval;
+
+SELECT p.name, w.quantity
+FROM more_table.warehouse w
+JOIN more_table.product p ON w.idproduct=p.idproduct
+WHERE p.name = 'Батончик Марс 50г (24.4 кг)';
