@@ -50,9 +50,11 @@ async def menu_maker(request:Request):
     return templates.TemplateResponse('menu_maker.html',  {"request": request})
 
 @app.post("/input_sales")
-async def create_upload_files(request: Request, product: str = Form(...), quantity: float = Form(...)):
-    with 
-    
+async def create_upload_files(request:Request, product: str = Form(...), quantity: int = Form(...)):
+    data_db.insert_sales(product, quantity)
+    data_db.send_email('krutkovova24@gmail.com', product)
+    return templates.TemplateResponse('menu_maker.html',  {"request": request})
+
 
 @app.get("/")
 async def root(request: Request):
