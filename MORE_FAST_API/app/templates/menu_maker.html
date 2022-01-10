@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MORE</title>
+    <link href="{{ url_for('static', path='/css/meny.css') }}" rel="stylesheet">
+    <!-- <link href="/home/uladzimir/MORE/MORE_FAST_API/static/css/meny.css" rel="stylesheet"> -->
+</head>
+<body>
+    <header class="header_menu">
+        <h1 align="center" class="title">
+            MORE
+        </h1>
+        <ul align="center">
+            <li>
+                <a href="#">
+                    Data Analysis
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Map
+                </a>
+                </li>
+            <li>
+                <a href="/country">
+                    Personal account   
+                </a>
+            </li>
+            <li>
+                <a href="/menu_maker">
+                    Menu maker
+                </a>
+            </li>
+            </ul>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <form action="/input_sales" enctype="multipart/form-data" method="post">
+                <label>Product name</label>
+                <br>
+                <input name="product" type="product" >
+                <br>
+                <label>Quantity</label>
+                <br>
+                <input name="quantity" type="quantity" >
+                <br><br>
+                <input type="submit">
+            </form>
+        </div> 
+    </main>
+</body>
+</html>

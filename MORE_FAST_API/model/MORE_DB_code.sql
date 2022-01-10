@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS "warehouse" (
   "date" timestamp NOT NULL DEFAULT current_timestamp
 );
 
+ALTER TABLE more_table.warehouse ALTER COLUMN date DROP DEFAULT ;
+
 CREATE TABLE IF NOT EXISTS "sale_price" (
   "idsale_price" serial PRIMARY KEY,
   "idproduct" int NOT NULL ,
@@ -99,32 +101,46 @@ LANGUAGE plpgsql AS $$
 
 SELECT more_table.insert_deliver_warehouse('Леденцы Орбит лимон и мята 35г (4.49 100 г)'::text, 'Россия', 'АЛИДИ-Вест ИООО',123,100 );
 
-CREATE OR REPLACE FUNCTION sale_transaction ( prod_name text, qunt int)
+CREATE OR REPLACE FUNCTION sales_(prod_name text, qunt int)
 RETURNS void
-LANGUAGE sql AS $$
-    INSERT INTO sale (idsale_price, quantity)
+LANGUAGE plpgsql AS $$
+    DECLARE
+    id_pr int = (SELECT idproduct
+                FROM more_table.product
+                WHERE name = prod_name);
+    BEGIN
+    INSERT INTO more_table.sale (idsale_price, quantity)
     VALUES (
-            (SELECT idsale_price FROM sale_price WHERE idproduct=(SELECT idproduct
-                                                                FROM product
-                                                                WHERE name = prod_name)),
+            (SELECT idsale_price FROM more_table.sale_price WHERE idproduct=id_pr),
             qunt
             );
 
-    UPDATE warehouse
+    UPDATE more_table.warehouse
     SET quantity= quantity-qunt
     WHERE idproduct=(SELECT idproduct
-                    FROM product
+                    FROM more_table.product
                     WHERE name = prod_name);
+    END;
     $$;
+ROLLBACK;
+SELECT more_table.sales_('Батончик Марс 50г (24.4 кг)'::text, 2);
 
-SELECT * FROM information_schema.tables;
+INSERT INTO more_table.sale (idsale_price, quantity)
+    VALUES (
+            (SELECT idsale_price FROM more_table.sale_price WHERE idproduct = (SELECT idproduct
+                                                                FROM more_table.product
+                                                                WHERE name ='Батончик Марс 50г (24.4 кг)')),
+            2
+            );
 
-INSERT INTO product (name, unit)
-VALUES ('2', '1');
+DELETE FROM  more_table.product
+WHERE idproduct=21;
 
-TRUNCATE product CASCADE ;
+SELECT idsale_price FROM more_table.sale_price WHERE idproduct=2;
 
+SELECT current_timestamp - '1 month'::interval;
 
-
-
-
+SELECT p.name, w.quantity
+FROM more_table.warehouse w
+JOIN more_table.product p ON w.idproduct=p.idproduct
+WHERE p.name = 'Батончик Марс 50г (24.4 кг)';
