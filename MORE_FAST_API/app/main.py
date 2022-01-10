@@ -1,7 +1,8 @@
-from os import sep
 from fastapi import FastAPI
+from fastapi import Form
 from starlette.requests import Request
 import uvicorn
+from pydantic import BaseModel
 # from fastapi.responses import HTMLResponse
 # from starlette.responses import FileResponse 
 from fastapi.staticfiles import StaticFiles
@@ -43,6 +44,15 @@ async def select_warehouse(request:Request):
     warehouse=data_db.select_warehouse()
     print(warehouse)
     return templates.TemplateResponse("warehouse.html", {"request": request, "warehouse":warehouse})
+
+@app.get('/menu_maker')
+async def menu_maker(request:Request):
+    return templates.TemplateResponse('menu_maker.html',  {"request": request})
+
+@app.post("/input_sales")
+async def create_upload_files(request: Request, product: str = Form(...), quantity: float = Form(...)):
+    with 
+    
 
 @app.get("/")
 async def root(request: Request):
